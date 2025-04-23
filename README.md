@@ -48,8 +48,6 @@ Rode o projeto:
 ```bash
 flutter run
 ```
-```
-
 
 ## Exemplo de Uso
 Preencha o formulário com dados válidos
