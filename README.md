@@ -48,6 +48,7 @@ Rode o projeto:
 ```bash
 flutter run
 ```
+```
 
 
 ## Exemplo de Uso
@@ -57,3 +58,17 @@ Clique em "Enviar" para registrar as informações
 
 Clique em "Listar Dados" para ver os cadastros
 
+ ## Estrutura do Projeto
+```css
+lib/
+├── screens/
+│   ├── home_screen.dart
+│   ├── form_screen.dart
+│   └── list_screen.dart
+├── services/
+│   └── api_service.dart
+└── main.dart
+```
+
+💡 Autor
+Desenvolvido por Victor Felipe e Maria Eduarda
