@@ -5,7 +5,7 @@ class ListScreen extends StatefulWidget {
   const ListScreen({super.key});
 
   @override
-  _ListScreenState createState() => _ListScreenState();
+  State<ListScreen> createState() => _ListScreenState();
 }
 
 class _ListScreenState extends State<ListScreen> {
@@ -20,9 +20,7 @@ class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lista de Dados'),
-      ),
+      appBar: AppBar(title: const Text('Lista de Dados')),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _futureData,
         builder: (context, snapshot) {
@@ -32,38 +30,19 @@ class _ListScreenState extends State<ListScreen> {
             return Center(child: Text('Erro: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('Nenhum dado encontrado.'));
+          } else {
+            final dataList = snapshot.data!;
+            return ListView.builder(
+              itemCount: dataList.length,
+              itemBuilder: (context, index) {
+                final item = dataList[index];
+                return ListTile(
+                  title: Text(item['nome'] ?? 'Sem nome'),
+                  subtitle: Text('${item['email']} - ${item['telefone']}'),
+                );
+              },
+            );
           }
-
-          final data = snapshot.data!;
-          return ListView.builder(
-            padding: const EdgeInsets.all(8.0),
-            itemCount: data.length,
-            itemBuilder: (context, index) {
-              final user = data[index];
-              return Card(
-                elevation: 4,
-                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(16.0),
-                  title: Text(
-                    user['nome'] ?? 'Sem nome',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 8),
-                      Text('E-mail: ${user['email'] ?? 'Sem e-mail'}'),
-                      Text('Telefone: ${user['telefone'] ?? 'Sem telefone'}'),
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
         },
       ),
     );
