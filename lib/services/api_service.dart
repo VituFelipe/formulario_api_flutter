@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  final String _baseUrl = 'https://seu-id.mockapi.io/api/v1/users';
+  final String _baseUrl = 'https://68091f381f1a52874cdbf5b3.mockapi.io/api/v1/usuario';
+  // https://68091f381f1a52874cdbf5b3.mockapi.io/api/v1/:endpoint
+  // https://seu-id.mockapi.io/api/v1/users
 
   // vo tenta aqui enviar os arq (POST)
   Future<void> postData(Map<String, String> data) async {
